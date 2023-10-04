@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-main>
+      <NavBar />
+      <CardMensagem />
+    </v-main>
+  </v-app>
 </template>
 
+<style scoped>
+
+</style>
+
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from "./components/NavBar.vue";
+import CardMensagem from "./components/CardMensagen.vue";
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
-</script>
+    NavBar,
+    CardMensagem,
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+    // Register the component to use it in your template
+  },
+  data: () => ({
+    Messages: [],
+    novaMensagen: {
+      name: "",
+      text: "",
+    },
+    mensageneditada: {
+      index: null,
+      text: "",
+    },
+
+   
+    dialog: false, // Indicates whether the edit dialog is open or closed
+  }),
+
+};
+</script>
