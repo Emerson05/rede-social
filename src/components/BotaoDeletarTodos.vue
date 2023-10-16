@@ -1,15 +1,11 @@
 <template>
-  <v-btn id="btn-delete" @click="deletarTodasMensagens">
-    <v-icon >mdi-delete</v-icon>
-    Deletar Publicações
-  </v-btn>
+  <v-btn  block id="btn-delete" @click="deletarTodasMensagens">
+    <v-icon >mdi-delete</v-icon>Apagar</v-btn>
 </template>
-
-
-<style>
-
-
-
+<style scoped>
+.btn-delete {
+  width: 50%; 
+}
 </style>
 <script>
 export default {

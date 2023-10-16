@@ -1,20 +1,24 @@
 <template>
   <v-app-bar app color="#FFC7EA" flat>
-    <v-container id="cont" class="py-0 fill-height">
-      <v-icon  icon color="white" class="cont">mdi-pyramid</v-icon>
-      <div class="mx-4">
-        <v-icon  icon color="white" class="mx-1">mdi-comment-quote</v-icon>Publicações
-      </div>
+    <v-container>
+      <v-row align="center" justify="space-between">
+        <v-col cols="auto">
+          <v-icon icon color="white">mdi-pyramid</v-icon>
+        </v-col>
+        <v-col cols="auto">
+          <v-icon icon color="white">mdi-comment-quote</v-icon>
+          <span class="mx-2">Publicações</span>
+        </v-col>
+        <v-col cols="auto">
+          <v-icon color="white">mdi-menu</v-icon>
+        </v-col>
+      </v-row>
     </v-container>
   </v-app-bar>
-</template> 
+</template>
 
-<style>
-#cont {
-  color: aliceblue;
-}
 
-</style>
+
 
 <script>
 export default {

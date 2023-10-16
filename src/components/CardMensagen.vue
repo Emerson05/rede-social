@@ -1,25 +1,33 @@
 <template>
   <div>
 
+   
     <v-app-bar app color="#FFC7EA" flat>
-    <v-container id="cont" class="py-0 fill-height">
-      <v-icon  icon color="white" class="cont">mdi-pyramid</v-icon>
-      <div class="mx-4">
-        <v-icon  icon color="white" class="mx-1">mdi-comment-quote</v-icon>Publicações
-      </div>
-      <BotaoDelete @deletar-todas-mensagens="deletarTodasMensagens" />
-    </v-container>
-  </v-app-bar>
+      <v-container class="py-2">
+        <v-row align="center" justify="center">
+          <v-col xs="12" md="6" class="text-center">        
+            <v-icon icon color="white" class="mx-1">mdi-comment-quote</v-icon><strong>Publicações</strong>
+            
+          </v-col>
+          <v-col xs="12" md="6" class="text-center">
+            <BotaoDelete @deletar-todas-mensagens="deletarTodasMensagens" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-app-bar>
     
     
     <div v-for="(message, index) in Messages" :key="index" class="message-card">
-      <v-card color="#FFC7EA" class="card-with-margin">
+      <v-card :class= "message.name != 'Eu' ? 'teal' : 'purple'" class="card-with-margin">
         <v-card-subtitle class="font-weight-bold">{{
           message.name
         }}</v-card-subtitle>
         <v-card-text>{{ message.text }}</v-card-text>
         <v-btn @click="editarMensagen(message, index)">Editar</v-btn>
       </v-card>
+
+     
+
     </div>
     <v-dialog v-model="dialog" max-width="500">
       <v-card>
@@ -43,7 +51,7 @@
         solo
         hide-details
         label="Nome"
-        
+       
         
       ></v-text-field>
       <v-text-field
@@ -61,17 +69,21 @@
 </template>
   
 
-  <style>
+<style>
 .card-with-margin {
-  margin-top: 2em; /* Adjust the value as needed for the desired spacing */
+  margin-top: 2em; 
   margin-left: 12vh;
   margin-right: 12vh;
 }
 
-
+strong{
+  color: aliceblue;
+}
 
 
 </style>
+
+
   <script>
 import BotaoDelete from "./BotaoDeletarTodos.vue";
 
@@ -85,8 +97,6 @@ export default {
 
   
   },
-
-  
 
   data: () => ({
     Messages: [],
