@@ -1,18 +1,27 @@
 <template>
   <v-app-bar app color="#FFC7EA" flat>
     <v-container>
-      <v-row align="center" justify="space-between">
-        <v-col cols="auto">
-          <v-icon icon color="white">mdi-pyramid</v-icon>
-        </v-col>
-        <v-col cols="auto">
-          <v-icon icon color="white">mdi-comment-quote</v-icon>
-          <span class="mx-2">Publicações</span>
-        </v-col>
-        <v-col cols="auto">
-          <v-icon color="white">mdi-menu</v-icon>
-        </v-col>
-      </v-row>
+      <v-btn color="white" class="mr-4">
+        <router-link to="/" style="color: black; text-decoration: none">
+          Página inicial
+        </router-link>
+      </v-btn>
+      <v-btn color="white" class="mr-4">
+        <router-link
+          to="/mensagens"
+          style="color: black; text-decoration: none"
+        >
+          Publicações
+        </router-link>
+      </v-btn>
+      <v-btn color="white" class="mr-4">
+        <router-link
+          to="/perfil"
+          style="color: black; text-decoration: none"
+        >
+        Perfil
+      </router-link>
+      </v-btn>
     </v-container>
   </v-app-bar>
 </template>

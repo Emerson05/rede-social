@@ -9,7 +9,7 @@
 </style>
 <script>
 export default {
-  name: "BotaoDelete",
+  name: "BotaoDeleteTodos",
   methods: {
     deletarTodasMensagens() {
       this.$emit('deletar-todas-mensagens'); // Emitir o evento para o componente pai

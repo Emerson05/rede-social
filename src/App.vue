@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <v-main>
-      <CardMensagem />
+      <nav-bar/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
@@ -12,14 +13,14 @@
 
 <script>
 
-import CardMensagem from "./components/CardMensagen.vue";
+import NavBar from "./components/NavBar.vue";
 
 export default {
   components: {
 
-    CardMensagem,
+    NavBar
 
-    // Register the component to use it in your template
+    
   },
   data: () => ({
     Messages: [],
@@ -33,7 +34,7 @@ export default {
     },
 
    
-    dialog: false, // Indicates whether the edit dialog is open or closed
+    dialog: false, 
   }),
 
 };
