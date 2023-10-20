@@ -7,7 +7,7 @@
           <v-col>
             <v-app-bar color="teal white--text" class="barrapPubli"> 
               <v-avatar class="mr-2" size="50">
-                        <img src="../assets/jorginho.png">
+                        <img src="../assets/testep.png">
               </v-avatar>
                 Jorginho <br> Hoje eu conseguir comprar meu primeiro carro
               </v-app-bar>

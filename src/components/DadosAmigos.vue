@@ -8,14 +8,14 @@
               <v-row>
                 <v-col class="text-center">
                   <v-avatar size="100">
-                    <img :src="user.avatar" alt="Profile Image" />
+                    <img :src="currentUser.avatar" alt="Profile Image" />
                   </v-avatar>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col class="text-center">
-                  <h2>{{ user.name }}</h2>
-                  <p>{{ user.title }}</p>
+                  <h2>{{ currentUser.name }}</h2>
+                  <p>{{ currentUser.title }}</p>
                 </v-col>
               </v-row>
               <v-divider></v-divider>
@@ -29,7 +29,7 @@
                         </v-list-item-icon>
                         <v-list-item-content>
                           <v-list-item-title>{{
-                            user.email
+                            currentUser.email
                           }}</v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
@@ -39,7 +39,7 @@
                         </v-list-item-icon>
                         <v-list-item-content>
                           <v-list-item-title>{{
-                            user.phone
+                            currentUser.phone
                           }}</v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
@@ -49,7 +49,7 @@
                         </v-list-item-icon>
                         <v-list-item-content>
                           <v-list-item-title>{{
-                            user.website
+                            currentUser.website
                           }}</v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
@@ -65,11 +65,7 @@
               <v-row>
                 <v-col>
                   <h2>Sobre</h2>
-                  <router-link :to="'/post/' + user.userId">
-                    Ver Postagens
-                  </router-link>
-
-                  <p>{{ user.about }}</p>
+                  <p>{{ currentUser.about }}</p>
                 </v-col>
               </v-row>
               <v-divider></v-divider>
@@ -78,7 +74,7 @@
                   <h2>Habilidades</h2>
                   <v-chip-group>
                     <v-chip
-                      v-for="skill in user.skills"
+                      v-for="skill in currentUser.skills"
                       :key="skill"
                       label
                       class="ma-2"
@@ -95,26 +91,48 @@
     </v-main>
   </v-app>
 </template>
-
-
-<script>
+  
+  <script>
 export default {
   name: "UserProfile",
   data() {
     return {
-      user: {
-        userId: 1,
-        name: "Jorge",
-        title: "A Vida é um jogo",
-        email: "jorge@example.com",
-        phone: "+1234567890",
-        website: "www.jorge-website.com",
-        about:
-          "Jorge é um indivíduo fascinante que adora explorar o mundo e compartilhar suas experiências.",
-        skills: ["Fotografia", "Aventura", "Escrita"],
-        avatar: require("../assets/carasurpeso.png"),
-      },
+      users: [
+        {
+          userId: 2,
+          name: "Ana",
+          title: "Profissional Multidisciplinar",
+          email: "ana@example.com",
+          phone: "+1234567890",
+          website: "www.anaprofissional.com",
+          about: "Profissional versátil com experiência em várias áreas.",
+          skills: ["Gestão de Projetos", "Marketing Digital"],
+          avatar: require("../assets/ana.png"),
+        },
+        {
+          userId: 3,
+          name: "Junior",
+          title: "Engenheiro",
+          email: "junioreng@Hotmail.com",
+          phone: "+1234567890",
+          website: "www.junioreng.com",
+          about: "Profissional com experiência em engenharia.",
+          skills: ["Engenharia Civil", "Engenharia Elétrica"],
+          avatar: require("../assets/jorge.png"),
+        },
+      ],
+      currentUser: null,
     };
+  },
+  methods: {
+    loadUser(userId) {
+      this.currentUser = this.users.find((user) => user.userId === userId);
+    },
+  },
+  created() {
+    // Carregar o usuário com base na rota
+    this.loadUser(this.$route.params.id);
   },
 };
 </script>
+  
