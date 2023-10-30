@@ -7,13 +7,30 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/Pagina Inicial',
-    name: 'Pagina Inicial',
+    path: '/inicio',
+    name: 'home', 
     component: HomeView
   },
   {
-    path: '/Publicações',
-    name: 'Publicações',
+    path: '/',
+    name: 'login',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/LoginPage.vue')
+  },
+
+  {
+    path: '/register',
+    name: 'registerUser',
+    component: () => import(/* webpackChunkName: "about" */ '../views/RegisterPage.vue')
+  },
+
+
+  
+  {
+    path: '/Publicacoes',
+    name: 'Publicacoes',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -47,9 +64,11 @@ const routes = [
 
   {
     path: '/post/:id',
-    name: 'user-posts',
+    name: 'user-posts', 
     component: () => import(/* webpackChunkName: "about" */ '../views/PublicacaoUsuarios.vue')
   }
+
+  
   
   
 

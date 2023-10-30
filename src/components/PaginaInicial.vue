@@ -1,59 +1,34 @@
+
+
 <template>
   <v-app id="inspire">
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
           <!-- Seção de postagens -->
-          <v-col cols="12" sm="2">
-            <v-sheet rounded="lg" min-height="268">
-              <h2>Postagens</h2>
-              <!-- Lista de postagens -->
-              <v-list>
-                <v-list-item-group>
-                  <v-list-item v-for="post in posts" :key="post.id">
-                    <v-list-item-content>
-                      <v-list-item-title>{{ post.title }}</v-list-item-title>
-                      <v-list-item-subtitle>{{ post.author }}</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-sheet>
-          </v-col>
-
           <!-- Seção de feed -->
           <v-col cols="12" sm="8">
             <v-sheet min-height="70vh" rounded="lg">
               <h2>Feed</h2>
-              <!-- Lista de posts no feed -->
-              <v-list>
-                <v-list-item-group>
-                  <v-list-item v-for="feedPost in feedPosts" :key="feedPost.id">
-                    <v-list-item-content>
-                      <v-list-item-title>{{ feedPost.title }}</v-list-item-title>
-                      <v-list-item-subtitle>{{ feedPost.author }}</v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
+              <div v-for="post in feedPosts" :key="post.id">
+                <v-list>
+                  <v-list-item-group>
+                    <v-list-item>
+                      <v-list-item-content>
+                        <v-list-item-title>{{ post.author }}</v-list-item-title>
+                        <v-list-item-subtitle>{{ post.title }}</v-list-item-subtitle>
+                        <p>{{ post.content }}</p>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list-item-group>
+                </v-list>
+              </div>
             </v-sheet>
           </v-col>
 
-          <!-- Seção de recomendações -->
-          <v-col cols="12" sm="2">
-            <v-sheet rounded="lg" min-height="268">
-              <h2>Recomendações</h2>
-              <!-- Lista de recomendações -->
-              <v-list>
-                <v-list-item-group>
-                  <v-list-item v-for="recomendacao in recomendacoes" :key="recomendacao.id">
-                    <v-list-item-content>
-                      <v-list-item-title>{{ recomendacao.name }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-            </v-sheet>
+          <!-- Include UserPosts component to display user's posts -->
+          <v-col cols="12" sm="4">
+            <UserPosts @user-posts-updated="updateFeedPosts" />
           </v-col>
         </v-row>
       </v-container>
@@ -61,24 +36,41 @@
   </v-app>
 </template>
 
+
 <script>
+import UserPosts from "@/components/PublicacoesUser.vue";
 export default {
   name: "PaginaInicial",
+  components: {
+  UserPosts,
+},
   data() {
     return {
-      posts: [
-        { id: 1, title: "Postagem 1", author: "Jorginho" },
-        { id: 2, title: "Postagem 2", author: "Ana" },
-        
-      ],
       feedPosts: [
-        { id: 1, title: "Postagem no Feed 1", author: "Jorginho" },
-        { id: 2, title: "Postagem no Feed 2", author: "Ana" },
-        
-      ],
-      recomendacoes: [
-        { id: 1, name: "Recomendação 1" },
-        { id: 2, name: "Recomendação 2" },
+      {
+        id: 1,
+        title: "Minha primeira postagem",
+        userId: 1,
+        author: "Jorginho",
+        content: "E aqui estou eu, dando os primeiros passos no mundo das redes sociais e compartilhando minha primeira postagem. É uma mistura de empolgação e nervosismo, mas estou animado para começar esta jornada de compartilhar minhas ideias, experiências e paixões com todos vocês."
+       
+      },
+      {
+        id: 2,
+        title: "Aventuras na montanha",
+        userId: 1,
+        author: "Jorginho",
+        content: "Ao longo das próximas semanas, vou compartilhar fotos, histórias e aprendizados das minhas aventuras. Desde trilhas desafiadoras até acampamentos sob um céu estrelado, espero inspirar todos a conectarem-se com a natureza e buscarem aventuras que alimentem a alma."
+      },
+
+      {
+        id: 3,
+        title: "Como fazer Lasanha",
+        userId: 2,
+        author: "Ana",
+        content: "Prepare um molho de carne com cebola, alho e tomate. Em uma tigela, misture ricota, queijo mussarela e parmesão. Monte camadas alternadas de massa, molho de carne e a mistura de queijo em um prato refratário. Cubra com queijo mussarela ralado e asse a 180°C por cerca de 30 minutos. Sirva e aproveite!"
+      },
+
         
       ],
     };

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <nav-bar/>
+      <Navbar/>
       <router-view />
     </v-main>
   </v-app>
@@ -13,29 +13,15 @@
 
 <script>
 
-import NavBar from "./components/NavBar.vue";
+import Navbar from "./components/NavBar";
 
 export default {
   components: {
+    Navbar
+ 
 
-    NavBar
 
-    
   },
-  data: () => ({
-    Messages: [],
-    novaMensagen: {
-      name: "",
-      text: "",
-    },
-    mensageneditada: {
-      index: null,
-      text: "",
-    },
-
-   
-    dialog: false, 
-  }),
 
 };
 </script>

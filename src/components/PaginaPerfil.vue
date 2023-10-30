@@ -104,14 +104,14 @@ export default {
     return {
       user: {
         userId: 1,
-        name: "Jorge",
+        name: "Jorginho",
         title: "A Vida é um jogo",
         email: "jorge@example.com",
         phone: "+1234567890",
         website: "www.jorge-website.com",
         about:
           "Jorge é um indivíduo fascinante que adora explorar o mundo e compartilhar suas experiências.",
-        skills: ["Fotografia", "Aventura", "Escrita"],
+        skills: ["Fotografia", "Aventura", "Escrita","Caça"],
         avatar: require("../assets/carasurpeso.png"),
       },
     };

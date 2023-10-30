@@ -61,8 +61,8 @@ export default {
   data() {
     return {
       drawer: false,
-      items: ["Pagina Inicial", "Perfil", "Publicações", "Amigos"]
-    };
+      items: [ "Perfil", "Publicacoes", "Amigos","Inicio"]
+    }
   }
 };
 </script>

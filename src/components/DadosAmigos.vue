@@ -66,6 +66,10 @@
                 <v-col>
                   <h2>Sobre</h2>
                   <p>{{ currentUser.about }}</p>
+
+                  <router-link :to="'/post/' + currentUser.userId">
+                    Ver Postagens
+                  </router-link>
                 </v-col>
               </v-row>
               <v-divider></v-divider>
