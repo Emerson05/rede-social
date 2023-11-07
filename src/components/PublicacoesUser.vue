@@ -1,6 +1,7 @@
 <template>
   <v-app id="user-posts">
     <v-main class="grey lighten-3">
+      <NavBar/>
       <v-container>
         <v-row>
           <v-col cols="12" sm="12" md="8">
@@ -26,8 +27,12 @@
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
 export default {
   name: "UserPosts",
+  components: {
+  NavBar,
+},
   data() {
     return {
       user: {
@@ -39,7 +44,7 @@ export default {
         website: "www.jorge-website.com",
         about: "Jorge é um indivíduo fascinante que adora explorar o mundo e compartilhar suas experiências.",
         skills: ["Fotografia", "Aventura", "Escrita"],
-        avatar: require("../assets/carasurpeso.png"),
+        avatar: require("../assets/testep.png"),
       },
       userPosts: [   {
         id: 1,

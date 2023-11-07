@@ -1,6 +1,7 @@
 <template>
   <v-app id="profile-page">
     <v-main class="grey lighten-3">
+      <NavBar/>
       <v-container>
         <v-row>
           <v-col cols="12" md="3">
@@ -98,8 +99,13 @@
 
 
 <script>
+import NavBar from "@/components/NavBar.vue";
 export default {
   name: "UserProfile",
+  components: {
+  NavBar,
+},
+
   data() {
     return {
       user: {
@@ -112,7 +118,7 @@ export default {
         about:
           "Jorge é um indivíduo fascinante que adora explorar o mundo e compartilhar suas experiências.",
         skills: ["Fotografia", "Aventura", "Escrita","Caça"],
-        avatar: require("../assets/carasurpeso.png"),
+        avatar: require("../assets/testep.png"),
       },
     };
   },

@@ -3,6 +3,7 @@
 <template>
   <v-app id="inspire">
     <v-main class="grey lighten-3">
+      <NavBar/>
       <v-container>
         <v-row>
           <!-- Seção de postagens -->
@@ -26,10 +27,8 @@
             </v-sheet>
           </v-col>
 
-          <!-- Include UserPosts component to display user's posts -->
-          <v-col cols="12" sm="4">
-            <UserPosts @user-posts-updated="updateFeedPosts" />
-          </v-col>
+         
+        
         </v-row>
       </v-container>
     </v-main>
@@ -38,11 +37,12 @@
 
 
 <script>
-import UserPosts from "@/components/PublicacoesUser.vue";
+
+import NavBar from "@/components/NavBar.vue";
 export default {
   name: "PaginaInicial",
   components: {
-  UserPosts,
+ NavBar,
 },
   data() {
     return {

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { auth } from "@/config/firebase";
+
 
 
 Vue.use(VueRouter)
@@ -8,8 +10,9 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/inicio',
-    name: 'home', 
-    component: HomeView
+    name: 'home',
+    component: HomeView,
+    meta: { requiresAuth: true },
   },
   {
     path: '/',
@@ -27,10 +30,11 @@ const routes = [
   },
 
 
-  
+
   {
-    path: '/Publicacoes',
-    name: 'Publicacoes',
+    path: '/Mensagens',
+    name: 'Mensagens',
+    meta: { requiresAuth: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -39,6 +43,7 @@ const routes = [
   {
     path: '/perfil',
     name: 'perfil',
+    meta: { requiresAuth: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -48,6 +53,7 @@ const routes = [
   {
     path: '/amigos',
     name: 'amigos',
+    meta: { requiresAuth: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -57,6 +63,7 @@ const routes = [
   {
     path: '/perfil/:id',
     name: 'perfilAmigo',
+    meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "about" */ '../views/AmigosPerfil.vue')
   },
 
@@ -64,13 +71,14 @@ const routes = [
 
   {
     path: '/post/:id',
-    name: 'user-posts', 
+    name: 'user-posts',
+    meta: { requiresAuth: true },
     component: () => import(/* webpackChunkName: "about" */ '../views/PublicacaoUsuarios.vue')
   }
 
-  
-  
-  
+
+
+
 
 ]
 
@@ -78,4 +86,24 @@ const router = new VueRouter({
   routes
 })
 
-export default router
+
+
+
+router.beforeEach((to, from, next) => {
+
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+
+    if (!auth.currentUser) {
+      next({ name: 'login' });
+    } else {
+
+      next();
+    }
+  } else {
+
+    next();
+  }
+});
+
+export default router;
+

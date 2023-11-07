@@ -1,6 +1,8 @@
 <template>
+ 
   <v-app id="profile-page">
     <v-main class="grey lighten-3">
+      <NavBar/>
       <v-container>
         <v-row>
           <v-col cols="12" md="3">
@@ -97,8 +99,15 @@
 </template>
   
   <script>
+import NavBar from "@/components/NavBar.vue";
+
 export default {
   name: "UserProfile",
+
+  components: {
+    NavBar,
+  },
+
   data() {
     return {
       users: [

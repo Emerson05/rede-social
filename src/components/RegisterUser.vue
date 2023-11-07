@@ -56,68 +56,62 @@ h1 {
   width: 30%;
   color: var(--darker);
 }
-
-
 </style>
   
-  <script>
+<script>
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyARK10x8iaawHfaqmDSVEwy1uC3nJDZjQs",
+  authDomain: "redesocial-e2e56.firebaseapp.com",
+  projectId: "redesocial-e2e56",
+  storageBucket: "redesocial-e2e56.appspot.com",
+  messagingSenderId: "922165985209",
+  appId: "1:922165985209:web:4929ab920dc0de9ad7c068",
+  measurementId: "G-BTG06W7W47"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+
 export default {
   name: "RegistroUsuario",
-  data: () => {
+  data() {
     return {
-      loading: false,
       email: "",
       password: "",
-      registrationPassword: "",
+      loading: false,
     };
   },
   methods: {
     async register() {
-      this.loading = true;
-      const { email, password, registrationPassword } = this;
-
       try {
-        if (password === registrationPassword) {
-          const res = await this.$firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password);
-
-          window.uid = res.user.uid;
-
-          this.$router.push({ name: "home" });
-        } else {
-          let message = "Senhas diferentes, por favor, tente de novo.";
-          this.$root.$emit("Notification::show", {
-            message,
-            type: "danger",
-          });
-          this.password = ""; // Limpa o input de senha
-          this.registrationPassword = ""; // Limpa o input de senha
-        }
-      } catch (err) {
-        let message = "";
-
-        switch (err.code) {
-          case "auth/email-already-in-use":
-            message = "O endereço de e-mail já está em uso por outra conta.";
-            this.email = ""; // Limpa o input de E-mail
-            break;
-          case "auth/wrong-password":
-            message = "Senha inválida";
-            break;
-          default:
-            message = "Não foi possível criar a conta, tente novamente";
-        }
-
-        this.$root.$emit("Notification::show", {
-          message,
-          type: "danger",
-        });
+        this.loading = true;
+      
+        await createUserWithEmailAndPassword(auth, this.email, this.password);
+       
+        console.log("Usuário registrado com sucesso!");
+        this.$router.push({ name: 'login' });
+       
+        this.email = "";
+        this.password = "";
+      } catch (error) {
+        console.error("Erro ao registrar o usuário:", error.message);
+      } finally {
+        this.loading = false;
       }
-
-      this.loading = false;
     },
+  },
+  created() {
+    // Check if the user is already authenticated
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is logged in, you can perform actions here
+      } else {
+        // User is not logged in
+      }
+    });
   },
 };
 </script>
-  

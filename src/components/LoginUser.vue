@@ -22,15 +22,13 @@
                 autocomplete="current-password"
               ></v-text-field>
             </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" @click="doLogin">Entrar</v-btn>
-              <span class="mt-4"
-                >Não tem conta?
-                <router-link :to="{ name: 'registerUser' }"
-                  >Clique aqui para Registrar</router-link
-                ></span
-              >
+            <v-card-actions class="text-center"> <!-- Adicione a classe "text-center" aqui -->
+              <v-btn class="content-center" color="primary" @click="doLogin">Entrar</v-btn><br>
             </v-card-actions>
+            <div class="text-center">
+              Não tem conta?<br>
+              <router-link :to="{ name: 'registerUser' }">Clique aqui para Registrar</router-link>
+            </div>
           </v-card>
         </v-col>
       </v-row>
@@ -55,18 +53,27 @@ export default {
   methods: {
 
     
-async doLogin() {
+    async doLogin() {
   try {
     await signInWithEmailAndPassword(auth, this.email, this.password);
-    console.log("Autenticado com sucesso");
 
-    this.$router.push({ name: 'home' });
+    
+    if (auth.currentUser) {
+      this.$router.push({ name: 'home' });
+    } else {
+      console.error('Usuario não está logado');
+    }
   } catch (error) {
-    console.error("Erro de autenticação:", error);
+    console.error('Authentication error:', error);
   }
 }
+
   }
 };
+
+
+
+
 </script>
 
 <style scoped>
@@ -88,4 +95,11 @@ h1 {
   color: var(--featured);
   text-decoration: none;
 }
+
+.registrar{
+  margin-bottom: 20px;
+  justify-content: center;
+  justify-items: center;
+}
+
 </style>

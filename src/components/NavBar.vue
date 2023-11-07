@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       drawer: false,
-      items: [ "Perfil", "Publicacoes", "Amigos","Inicio"]
+      items: [ "Inicio","Perfil", "Mensagens", "Amigos"]
     }
   }
 };

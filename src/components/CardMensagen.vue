@@ -2,6 +2,7 @@
 <template>
    <v-app id="inspire">
     <v-main class="grey lighten-3">
+      <NavBar/>
       <v-container>
         <v-row>
           <v-col>
@@ -9,7 +10,7 @@
               <v-avatar class="mr-2" size="50">
                         <img src="../assets/testep.png">
               </v-avatar>
-                Jorginho <br> Hoje eu conseguir comprar meu primeiro carro
+                Jorginho 
               </v-app-bar>
             <v-sheet min-height="50vh" rounded="lg"  >
               <div  class="message-card">
@@ -64,20 +65,17 @@ strong {
 }
 </style>
   <script>
-
+import NavBar from "@/components/NavBar.vue";
 export default {
   name: "MensagenCard",
 
   components: {
-    
+    NavBar,
   },
 
   data: () => ({
     Messages: [
-      { name: "Ana", text: " Parabéns pela conquista do seu novo carro! Que ele te traga muitas aventuras e momentos inesquecíveis. Estou muito feliz por você" },
-      { name: "Rafaelo o Grande", text: " Nada como a sensação de dirigir um carro novo! Parabéns pela sua nova conquista. Que cada quilômetro seja repleto de alegria e realizações." },
-      
-
+      { name: "Jorginho", text: "oi, ta ai?" },  
     ],
     novaMensagen: {
       name: "Eu",
